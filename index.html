@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="auto">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <title>Mohammed Abdullah Khan — Flutter Developer</title>
+  <meta name="description"
+    content="Flutter developer with 4+ years building reliable, payment-heavy cross-platform apps for iOS, Android and desktop. Available for full-time roles and freelance work." />
+  <meta name="color-scheme" content="light dark" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:opsz,wght@6..96,400;6..96,500;6..96,600;6..96,700&family=Hanken+Grotesk:wght@300;400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap"
+    rel="stylesheet" />
+
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+
+<body>
+
+  <!-- Hidden SVG duotone filter (maps photo to ink + paper) -->
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+    <filter id="duotone" color-interpolation-filters="sRGB">
+      <feColorMatrix type="matrix" values="0.2126 0.7152 0.0722 0 0
+                                         0.2126 0.7152 0.0722 0 0
+                                         0.2126 0.7152 0.0722 0 0
+                                         0      0      0      1 0" />
+      <feComponentTransfer>
+        <feFuncR tableValues="0.07 0.96" />
+        <feFuncG tableValues="0.12 0.95" />
+        <feFuncB tableValues="0.24 0.92" />
+      </feComponentTransfer>
+    </filter>
+  </svg>
+
+  <!-- Theme toggle -->
+  <button id="themeToggle" class="theme-toggle" aria-label="Switch colour theme" title="Switch theme">
+    <span class="toggle-icon sun" aria-hidden="true">☀</span>
+    <span class="toggle-icon moon" aria-hidden="true">☾</span>
+  </button>
+
+  <!-- Top meta bar -->
+  <div class="topbar">
+    <div class="wrap topbar-inner">
+      <span class="mark">M · A · K</span>
+      <span class="topbar-meta">Flutter Developer — Available for work</span>
+    </div>
+  </div>
+
+  <!-- ============ HERO ============ -->
+  <header class="hero">
+    <div class="wrap hero-grid">
+      <div class="hero-text">
+        <p class="eyebrow" data-reveal>iOS · Android · Desktop · Flutter</p>
+        <h1 class="hero-name" data-reveal>Mohammed<br />Abdullah Khan</h1>
+        <p class="hero-lead" data-reveal>
+          I build cross-platform apps that stay reliable when conditions are not.
+          Four years of Flutter, mostly on payments and fintech, where the hard
+          part is not the screens but the transactions that cannot fail.
+        </p>
+        <div class="hero-cta" data-reveal>
+          <a class="btn btn-primary" href="#contact">Get in touch</a>
+          <a class="btn btn-ghost" href="#work">See the work</a>
+        </div>
+      </div>
+      <div class="hero-portrait" data-reveal>
+        <figure class="portrait">
+          <img src="assets/profile.jpg" alt="Portrait of Mohammed Abdullah Khan" />
+          <figcaption>Mohammed Abdullah Khan</figcaption>
+        </figure>
+      </div>
+    </div>
+  </header>
+
+  <main>
+
+    <!-- ============ CAPABILITY BAND ============ -->
+    <section class="capability" aria-labelledby="cap-h">
+      <div class="wrap">
+        <h2 id="cap-h" class="visually-hidden">What I can help with</h2>
+        <ul class="cap-grid">
+          <li data-reveal><span class="cap-no">01</span>
+            <h3>Apps, end to end</h3>
+            <p>Cross-platform iOS and Android apps from architecture through to store release.</p>
+          </li>
+          <li data-reveal><span class="cap-no">02</span>
+            <h3>Payments &amp; APIs</h3>
+            <p>Secure payment flows and clean REST / GraphQL integration with backend teams.</p>
+          </li>
+          <li data-reveal><span class="cap-no">03</span>
+            <h3>Offline &amp; real time</h3>
+            <p>Offline-first data, conflict resolution, and live sync that holds under load.</p>
+          </li>
+          <li data-reveal><span class="cap-no">04</span>
+            <h3>AI in apps</h3>
+            <p>Integrating LLM APIs such as Gemini, plus AI-assisted development workflows.</p>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- ============ ABOUT ============ -->
+    <section class="about" aria-labelledby="about-h">
+      <div class="wrap about-grid">
+        <h2 id="about-h" class="section-title" data-reveal>About</h2>
+        <div class="about-body" data-reveal>
+          <p>
+            I have shipped Flutter apps to the App Store and Google Play, and built
+            desktop software with Flutter Desktop. My focus is reliability:
+            offline-first data layers, real-time sync, secure payment flows, and
+            clean architecture that holds up as an app grows.
+          </p>
+          <p>
+            Most of my work has been in regulated, data-sensitive products like
+            legal and fintech, so I care about the parts that break in production.
+            I am open to remote roles and relocation, and available for freelance
+            Flutter work, contract or full-time.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ WORK ============ -->
+    <section id="work" class="work" aria-labelledby="work-h">
+      <div class="wrap">
+        <h2 id="work-h" class="section-title" data-reveal>Selected work</h2>
+        <p class="work-sub" data-reveal>Client and production work, followed by personal projects.</p>
+
+        <!-- WakeelsApp -->
+        <article class="entry" data-reveal>
+          <div class="entry-index">01</div>
+          <div class="entry-main">
+            <header class="entry-head">
+              <div>
+                <h3 class="entry-name">WakeelsApp</h3>
+                <p class="entry-meta"><span class="tag tag-client">Client</span> Sole Flutter developer · iOS &amp;
+                  Android</p>
+              </div>
+            </header>
+            <p class="entry-desc">
+              A case-management app for lawyers. It pulls live case information from
+              official court channels and keeps each case current: court status,
+              hearing schedules, client details, and history. On top of that data it
+              surfaces insights drawn from Pakistani law and precedent. I owned the
+              whole app, from architecture and UI to release on both stores.
+            </p>
+            <div class="metrics">
+              <div class="metric"><span class="metric-val" data-count="0">0</span><span class="metric-label">Sync errors
+                  in QA</span></div>
+              <div class="metric"><span class="metric-val" data-count="40" data-prefix="-"
+                  data-suffix="%">-40%</span><span class="metric-label">Retrieval latency</span></div>
+              <div class="metric"><span class="metric-val" data-count="35" data-prefix="-"
+                  data-suffix="%">-35%</span><span class="metric-label">Render bottlenecks</span></div>
+            </div>
+            <div class="shots">
+              <img src="images/wakeelsapp-1.png" alt="WakeelsApp screen 1" loading="lazy" />
+              <img src="images/wakeelsapp-2.png" alt="WakeelsApp screen 2" loading="lazy" />
+              <img src="images/wakeelsapp-3.png" alt="WakeelsApp screen 3" loading="lazy" />
+            </div>
+            <ul class="tech">
+              <li>Flutter</li>
+              <li>Dart</li>
+              <li>BLoC</li>
+              <li>SQLite</li>
+              <li>Hive</li>
+              <li>REST</li>
+              <li>OAuth 2.0</li>
+              <li>FCM</li>
+              <li>GitHub Actions</li>
+            </ul>
+          </div>
+        </article>
+
+        <!-- POS -->
+        <article class="entry" data-reveal>
+          <div class="entry-index">02</div>
+          <div class="entry-main">
+            <header class="entry-head">
+              <div>
+                <h3 class="entry-name">Workshop POS</h3>
+                <p class="entry-meta"><span class="tag tag-client">Client</span> Flutter Desktop · Windows</p>
+              </div>
+            </header>
+            <p class="entry-desc">
+              A point-of-sale and inventory system built for an automobile workshop
+              to record sales and stock. It prints bill and inventory receipts, and
+              runs on both a local MySQL database and Firebase Firestore, so the
+              workshop keeps working whether or not it is online.
+            </p>
+            <div class="metrics">
+              <div class="metric"><span class="metric-val small">Flutter Desktop</span><span
+                  class="metric-label">Platform</span></div>
+              <div class="metric"><span class="metric-val small">Local + Cloud</span><span
+                  class="metric-label">Data</span></div>
+              <div class="metric"><span class="metric-val small">Printed receipts</span><span
+                  class="metric-label">Output</span></div>
+            </div>
+            <div class="shots">
+              <img src="images/pos-1.png" alt="Workshop POS screen 1" loading="lazy" />
+              <img src="images/pos-2.png" alt="Workshop POS screen 2" loading="lazy" />
+            </div>
+            <ul class="tech">
+              <li>Flutter Desktop</li>
+              <li>Dart</li>
+              <li>Firebase</li>
+              <li>MySQL</li>
+              <li>Receipt printing</li>
+            </ul>
+          </div>
+        </article>
+
+        <!-- ExpenseEcho -->
+        <article class="entry" data-reveal>
+          <div class="entry-index">03</div>
+          <div class="entry-main">
+            <header class="entry-head">
+              <div>
+                <h3 class="entry-name">ExpenseEcho</h3>
+                <p class="entry-meta"><span class="tag tag-personal">Personal</span> iOS &amp; Android</p>
+              </div>
+              <a class="repo-link" href="https://github.com/abdullahmurdana" target="_blank" rel="noopener">View code
+                →</a>
+            </header>
+            <p class="entry-desc">
+              An offline-first personal finance app that tracks expenses, categorises
+              transactions, and generates spending insights using the Gemini API. It
+              uses a hybrid local store (SQLite for the ledger, SharedPreferences for
+              lightweight state), syncs through Firebase, and supports multiple
+              languages at runtime.
+            </p>
+            <div class="metrics">
+              <div class="metric"><span class="metric-val" data-count="15" data-prefix="&lt;"
+                  data-suffix="ms">&lt;15ms</span><span class="metric-label">Query latency</span></div>
+              <div class="metric"><span class="metric-val small">Gemini API</span><span class="metric-label">AI
+                  insights</span></div>
+              <div class="metric"><span class="metric-val small">Offline-first</span><span
+                  class="metric-label">Architecture</span></div>
+            </div>
+            <div class="shots">
+              <img src="images/expenseecho-1.png" alt="ExpenseEcho screen 1" loading="lazy" />
+              <img src="images/expenseecho-2.png" alt="ExpenseEcho screen 2" loading="lazy" />
+              <img src="images/expenseecho-3.png" alt="ExpenseEcho screen 3" loading="lazy" />
+            </div>
+            <ul class="tech">
+              <li>Flutter</li>
+              <li>Dart</li>
+              <li>SQLite</li>
+              <li>SharedPreferences</li>
+              <li>Firebase</li>
+              <li>FCM</li>
+              <li>Gemini API</li>
+              <li>Localization</li>
+            </ul>
+          </div>
+        </article>
+
+        <!-- Shopify -->
+        <article class="entry" data-reveal>
+          <div class="entry-index">04</div>
+          <div class="entry-main">
+            <header class="entry-head">
+              <div>
+                <h3 class="entry-name">Shopify Storefront Engine</h3>
+                <p class="entry-meta"><span class="tag tag-personal">Personal</span> iOS &amp; Android</p>
+              </div>
+              <a class="repo-link" href="https://github.com/abdullahmurdana" target="_blank" rel="noopener">View code
+                →</a>
+            </header>
+            <p class="entry-desc">
+              A white-label storefront engine that turns a headless Shopify store into
+              a native app from its configuration. It renders the catalogue from a
+              schema, consumes the Shopify Storefront API over GraphQL, and handles
+              product variations, filtering, and cart, with the UI decoupled from the
+              raw API payloads through reusable components.
+            </p>
+            <div class="metrics">
+              <div class="metric"><span class="metric-val small">GraphQL</span><span class="metric-label">API</span>
+              </div>
+              <div class="metric"><span class="metric-val small">Schema-driven</span><span
+                  class="metric-label">Model</span></div>
+              <div class="metric"><span class="metric-val small">Decoupled UI</span><span
+                  class="metric-label">Architecture</span></div>
+            </div>
+            <div class="shots">
+              <img src="images/shopify-1.png" alt="Shopify storefront screen 1" loading="lazy" />
+              <img src="images/shopify-2.png" alt="Shopify storefront screen 2" loading="lazy" />
+              <img src="images/shopify-3.png" alt="Shopify storefront screen 3" loading="lazy" />
+            </div>
+            <ul class="tech">
+              <li>Flutter</li>
+              <li>Dart</li>
+              <li>GraphQL</li>
+              <li>Shopify Storefront API</li>
+              <li>Clean Architecture</li>
+            </ul>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- ============ SKILLS ============ -->
+    <section class="skills" aria-labelledby="skills-h">
+      <div class="wrap">
+        <h2 id="skills-h" class="section-title" data-reveal>Skills</h2>
+        <dl class="skills-list">
+          <div class="skill-row" data-reveal>
+            <dt>Languages</dt>
+            <dd>Dart, Java</dd>
+          </div>
+          <div class="skill-row" data-reveal>
+            <dt>Frameworks</dt>
+            <dd>Flutter, Flutter Desktop</dd>
+          </div>
+          <div class="skill-row" data-reveal>
+            <dt>State management</dt>
+            <dd>BLoC, Provider, GetX</dd>
+          </div>
+          <div class="skill-row" data-reveal>
+            <dt>Backend &amp; data</dt>
+            <dd>REST, GraphQL, Dio, Firebase (Firestore, FCM), SQLite, Hive, SharedPreferences, MySQL</dd>
+          </div>
+          <div class="skill-row" data-reveal>
+            <dt>AI</dt>
+            <dd>LLM / Gemini API integration, AI-assisted development</dd>
+          </div>
+          <div class="skill-row" data-reveal>
+            <dt>Architecture</dt>
+            <dd>Clean Architecture, MVVM, Repository Pattern</dd>
+          </div>
+          <div class="skill-row" data-reveal>
+            <dt>Tools &amp; delivery</dt>
+            <dd>Git, GitHub Actions, Postman, Jira, Trello, Figma, receipt / PDF printing, App Store &amp; Play Store
+              deployment</dd>
+          </div>
+          <div class="skill-row" data-reveal>
+            <dt>Familiar with</dt>
+            <dd>Riverpod, GoRouter, freezed / json_serializable, Socket.IO, Supabase</dd>
+          </div>
+        </dl>
+      </div>
+    </section>
+
+    <!-- ============ CONTACT ============ -->
+    <section id="contact" class="contact" aria-labelledby="contact-h">
+      <div class="wrap contact-grid">
+        <div>
+          <h2 id="contact-h" class="section-title" data-reveal>Let's talk</h2>
+          <p class="contact-lead" data-reveal>
+            Open to remote roles and relocation. Available for Flutter work,
+            contract or full-time. The fastest way to reach me is WhatsApp.
+          </p>
+          <a class="btn btn-wa" data-reveal
+            href="https://wa.me/923009691591?text=Hi%20Abdullah%2C%20I%20saw%20your%20portfolio" target="_blank"
+            rel="noopener">
+            <span class="wa-glyph" aria-hidden="true">✆</span> Message on WhatsApp
+          </a>
+        </div>
+        <div class="contact-links" data-reveal>
+          <a href="mailto:abdullahmurdana@yahoo.com"><span class="cl-label">Email</span><span
+              class="cl-val">abdullahmurdana@yahoo.com</span></a>
+          <a href="https://www.linkedin.com/in/abdullahmurdana" target="_blank" rel="noopener"><span
+              class="cl-label">LinkedIn</span><span class="cl-val">/in/abdullahmurdana</span></a>
+          <a href="https://github.com/abdullahmurdana" target="_blank" rel="noopener"><span
+              class="cl-label">GitHub</span><span class="cl-val">/abdullahmurdana</span></a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="foot">
+    <div class="wrap foot-inner">
+      <span>© 2026 Mohammed Abdullah Khan</span>
+      <span>Built by hand — HTML, CSS, a little JavaScript.</span>
+    </div>
+  </footer>
+
+  <script src="js/app.js" defer></script>
+</body>
+
+</html>
