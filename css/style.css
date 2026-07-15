@@ -55,6 +55,8 @@
 html {
   scroll-behavior: smooth;
   -webkit-text-size-adjust: 100%;
+  /* Offset anchor jumps so targets clear the sticky top bar (~64px + safe area). */
+  scroll-padding-top: calc(72px + env(safe-area-inset-top, 0px));
 }
 
 body {
