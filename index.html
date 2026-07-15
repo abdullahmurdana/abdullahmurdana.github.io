@@ -8,17 +8,76 @@
   <meta name="description"
     content="Flutter developer with 4+ years building reliable, payment-heavy cross-platform apps for iOS, Android and desktop. Available for full-time roles and freelance work." />
   <meta name="color-scheme" content="light dark" />
+  <link rel="canonical" href="https://abdullahmurdana.github.io/" />
+
+  <!-- Browser chrome colour matches the palette -->
+  <meta name="theme-color" content="#F5F1E8" media="(prefers-color-scheme: light)" />
+  <meta name="theme-color" content="#131519" media="(prefers-color-scheme: dark)" />
+
+  <!-- Favicons -->
+  <link rel="icon" href="images/favicon.svg" type="image/svg+xml" />
+  <link rel="apple-touch-icon" href="images/apple-touch-icon.png" />
+
+  <!-- Open Graph (LinkedIn, WhatsApp, Facebook) -->
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="Mohammed Abdullah Khan" />
+  <meta property="og:title" content="Mohammed Abdullah Khan - Flutter Developer" />
+  <meta property="og:description"
+    content="Flutter developer with 4+ years building reliable, payment-heavy cross-platform apps for iOS, Android and desktop. Available for full-time roles and freelance work." />
+  <meta property="og:url" content="https://abdullahmurdana.github.io/" />
+  <meta property="og:image" content="https://abdullahmurdana.github.io/images/og-card.png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:image:alt" content="Mohammed Abdullah Khan - Flutter Developer" />
+
+  <!-- Twitter / X -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Mohammed Abdullah Khan - Flutter Developer" />
+  <meta name="twitter:description"
+    content="Flutter developer with 4+ years building reliable, payment-heavy cross-platform apps for iOS, Android and desktop." />
+  <meta name="twitter:image" content="https://abdullahmurdana.github.io/images/og-card.png" />
+
+  <!-- Structured data: Person -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "Mohammed Abdullah Khan",
+    "jobTitle": "Flutter Developer",
+    "url": "https://abdullahmurdana.github.io/",
+    "image": "https://abdullahmurdana.github.io/assets/profile.jpg",
+    "email": "mailto:abdullahmurdana@yahoo.com",
+    "description": "Flutter developer with 4+ years building reliable, payment-heavy cross-platform apps for iOS, Android and desktop.",
+    "knowsAbout": ["Flutter", "Dart", "Cross-platform apps", "Mobile payments", "Fintech", "Offline-first architecture"],
+    "sameAs": [
+      "https://www.linkedin.com/in/abdullahmurdana",
+      "https://github.com/abdullahmurdana"
+    ]
+  }
+  </script>
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link
-    href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:opsz,wght@6..96,400;6..96,500;6..96,600;6..96,700&family=Hanken+Grotesk:wght@300;400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap"
+    href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:opsz,wght@6..96,500;6..96,600&family=Hanken+Grotesk:wght@400&family=IBM+Plex+Mono:wght@400;500&display=swap"
     rel="stylesheet" />
 
   <link rel="stylesheet" href="css/style.css" />
 </head>
 
 <body>
+
+  <!-- Scroll progress hairline -->
+  <div class="scroll-progress" aria-hidden="true"></div>
+
+  <!-- Right-side section navigator (scroll-spy, desktop) -->
+  <nav class="section-nav" aria-label="Section navigation">
+    <a href="#top" data-spy="top"><span class="sn-label">Top</span><span class="sn-tick" aria-hidden="true"></span></a>
+    <a href="#about" data-spy="about"><span class="sn-label">About</span><span class="sn-tick" aria-hidden="true"></span></a>
+    <a href="#work" data-spy="work"><span class="sn-label">Work</span><span class="sn-tick" aria-hidden="true"></span></a>
+    <a href="#skills" data-spy="skills"><span class="sn-label">Skills</span><span class="sn-tick" aria-hidden="true"></span></a>
+    <a href="#contact" data-spy="contact"><span class="sn-label">Contact</span><span class="sn-tick" aria-hidden="true"></span></a>
+  </nav>
 
   <!-- Hidden SVG duotone filter (maps photo to ink + paper) -->
   <svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
@@ -35,39 +94,60 @@
     </filter>
   </svg>
 
-  <!-- Theme toggle -->
-  <button id="themeToggle" class="theme-toggle" aria-label="Switch colour theme" title="Switch theme">
-    <span class="toggle-icon sun" aria-hidden="true">☀</span>
-    <span class="toggle-icon moon" aria-hidden="true">☾</span>
-  </button>
-
-  <!-- Top meta bar -->
+  <!-- Top meta bar (sticky) -->
   <div class="topbar">
     <div class="wrap topbar-inner">
       <span class="mark">M · A · K</span>
-      <span class="topbar-meta">Flutter Developer - Available for work</span>
+      <div class="topbar-right">
+        <span class="topbar-meta">Flutter Developer - Available for work</span>
+        <button id="themeToggle" class="theme-toggle" type="button" aria-label="Switch colour theme"
+          aria-pressed="false" title="Switch theme">
+          <span class="toggle-icon sun" aria-hidden="true">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+              stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="4" />
+              <path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41" />
+            </svg>
+          </span>
+          <span class="toggle-icon moon" aria-hidden="true">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+              stroke-linecap="round" stroke-linejoin="round">
+              <path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z" />
+            </svg>
+          </span>
+        </button>
+      </div>
     </div>
   </div>
 
   <!-- ============ HERO ============ -->
-  <header class="hero">
+  <header class="hero" id="top">
     <div class="wrap hero-grid">
-      <div class="hero-text">
+      <div class="hero-text" data-stagger>
         <p class="eyebrow" data-reveal>iOS · Android · Desktop · Flutter</p>
         <h1 class="hero-name" data-reveal>Mohammed<br />Abdullah Khan</h1>
         <p class="hero-lead" data-reveal>
-          I build cross-platform apps that stay reliable when conditions are not.
-          Four years of Flutter, mostly on payments and fintech, where the hard
-          part is not the screens but the transactions that cannot fail.
+          I build cross-platform apps that stay reliable when the network drops
+          and the data conflicts. Four years of Flutter, mostly payments and
+          fintech, where the transactions cannot fail.
         </p>
         <div class="hero-cta" data-reveal>
           <a class="btn btn-primary" href="#contact">Get in touch</a>
           <a class="btn btn-ghost" href="#work">See the work</a>
+          <button class="btn btn-ghost" type="button" data-print>
+            <span class="btn-glyph" aria-hidden="true">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round">
+                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3" />
+              </svg>
+            </span>
+            Download CV
+          </button>
         </div>
       </div>
       <div class="hero-portrait" data-reveal>
         <figure class="portrait">
-          <img src="assets/profile.jpg" alt="Portrait of Mohammed Abdullah Khan" />
+          <img src="assets/profile.jpg" alt="Portrait of Mohammed Abdullah Khan" width="900" height="1199" />
           <figcaption>Mohammed Abdullah Khan</figcaption>
         </figure>
       </div>
@@ -80,7 +160,7 @@
     <section class="capability" aria-labelledby="cap-h">
       <div class="wrap">
         <h2 id="cap-h" class="visually-hidden">What I can help with</h2>
-        <ul class="cap-grid">
+        <ul class="cap-grid" data-stagger>
           <li data-reveal><span class="cap-no">01</span>
             <h3>Apps, end to end</h3>
             <p>Cross-platform iOS and Android apps from architecture through to store release.</p>
@@ -102,7 +182,7 @@
     </section>
 
     <!-- ============ ABOUT ============ -->
-    <section class="about" aria-labelledby="about-h">
+    <section id="about" class="about" aria-labelledby="about-h">
       <div class="wrap about-grid">
         <h2 id="about-h" class="section-title" data-reveal>About</h2>
         <div class="about-body" data-reveal>
@@ -301,7 +381,7 @@
     </section>
 
     <!-- ============ SKILLS ============ -->
-    <section class="skills" aria-labelledby="skills-h">
+    <section id="skills" class="skills" aria-labelledby="skills-h">
       <div class="wrap">
         <h2 id="skills-h" class="section-title" data-reveal>Skills</h2>
         <dl class="skills-list">
@@ -348,21 +428,26 @@
         <div>
           <h2 id="contact-h" class="section-title" data-reveal>Let's talk</h2>
           <p class="contact-lead" data-reveal>
-            Open to remote roles and relocation. Available for Flutter work,
-            contract or full-time. The fastest way to reach me is WhatsApp.
+            Open to remote roles and relocation, available for contract or
+            full-time Flutter work. WhatsApp reaches me fastest.
           </p>
           <a class="btn btn-wa" data-reveal
             href="https://wa.me/923009691591?text=Hi%20Abdullah%2C%20I%20saw%20your%20portfolio" target="_blank"
             rel="noopener">
-            <span class="wa-glyph" aria-hidden="true">✆</span> Message on WhatsApp
+            <span class="wa-glyph" aria-hidden="true">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round">
+                <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5Z" />
+              </svg>
+            </span> Message on WhatsApp
           </a>
         </div>
-        <div class="contact-links" data-reveal>
-          <a href="mailto:abdullahmurdana@yahoo.com"><span class="cl-label">Email</span><span
+        <div class="contact-links" data-stagger>
+          <a href="mailto:abdullahmurdana@yahoo.com" data-reveal><span class="cl-label">Email</span><span
               class="cl-val">abdullahmurdana@yahoo.com</span></a>
-          <a href="https://www.linkedin.com/in/abdullahmurdana" target="_blank" rel="noopener"><span
+          <a href="https://www.linkedin.com/in/abdullahmurdana" target="_blank" rel="noopener" data-reveal><span
               class="cl-label">LinkedIn</span><span class="cl-val">/in/abdullahmurdana</span></a>
-          <a href="https://github.com/abdullahmurdana" target="_blank" rel="noopener"><span
+          <a href="https://github.com/abdullahmurdana" target="_blank" rel="noopener" data-reveal><span
               class="cl-label">GitHub</span><span class="cl-val">/abdullahmurdana</span></a>
         </div>
       </div>
@@ -376,6 +461,14 @@
       <span>Built by hand - HTML, CSS, a little JavaScript.</span>
     </div>
   </footer>
+
+  <!-- Scroll to top -->
+  <button class="to-top" type="button" aria-label="Scroll back to top" title="Back to top">
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+      stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+      <path d="M12 19V5M5 12l7-7 7 7" />
+    </svg>
+  </button>
 
   <script src="js/app.js" defer></script>
 </body>

@@ -12,38 +12,75 @@
   var Theme = {
     init: function () {
       var root = document.documentElement;
+      var mq = window.matchMedia("(prefers-color-scheme: dark)");
       var saved = null;
       try { saved = localStorage.getItem("theme"); } catch (e) {}
       if (saved === "light" || saved === "dark") root.setAttribute("data-theme", saved);
 
       var btn = document.getElementById("themeToggle");
       if (!btn) return;
+
+      function isDark() {
+        var t = root.getAttribute("data-theme");
+        if (t === "dark") return true;
+        if (t === "light") return false;
+        return mq.matches; // auto: follow the system
+      }
+      function syncPressed() {
+        btn.setAttribute("aria-pressed", isDark() ? "true" : "false");
+      }
+      syncPressed();
+
       btn.addEventListener("click", function () {
-        var cur = root.getAttribute("data-theme");
-        if (cur === "auto" || !cur) {
-          cur = window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
-        }
-        var next = cur === "dark" ? "light" : "dark";
+        var next = isDark() ? "light" : "dark";
         root.setAttribute("data-theme", next);
         try { localStorage.setItem("theme", next); } catch (e) {}
+        syncPressed();
       });
+
+      // Keep the announced state correct while following the system in auto mode.
+      if (mq.addEventListener) {
+        mq.addEventListener("change", function () {
+          if (root.getAttribute("data-theme") === "auto") syncPressed();
+        });
+      }
     }
   };
 
-  /* ---------- Scroll reveal ---------- */
+  /* ---------- Scroll reveal (with grouped stagger) ----------
+     Standalone [data-reveal] elements fade in individually. Elements inside a
+     [data-stagger] container reveal together, cascading by ~70ms each. */
   var Reveal = {
     init: function () {
-      var items = document.querySelectorAll("[data-reveal]");
+      var all = document.querySelectorAll("[data-reveal]");
       if (prefersReduced || !("IntersectionObserver" in window)) {
-        items.forEach(function (el) { el.classList.add("in"); });
+        all.forEach(function (el) { el.classList.add("in"); });
         return;
       }
-      var io = new IntersectionObserver(function (entries) {
+
+      // Reveal items that are NOT part of a stagger group, one at a time.
+      var soloIO = new IntersectionObserver(function (entries) {
         entries.forEach(function (e) {
-          if (e.isIntersecting) { e.target.classList.add("in"); io.unobserve(e.target); }
+          if (e.isIntersecting) { e.target.classList.add("in"); soloIO.unobserve(e.target); }
         });
       }, { threshold: 0.14 });
-      items.forEach(function (el) { io.observe(el); });
+      all.forEach(function (el) {
+        if (!el.closest("[data-stagger]")) soloIO.observe(el);
+      });
+
+      // Reveal each stagger group's children as a cascade when the group enters.
+      var groupIO = new IntersectionObserver(function (entries) {
+        entries.forEach(function (e) {
+          if (!e.isIntersecting) return;
+          var kids = e.target.querySelectorAll("[data-reveal]");
+          kids.forEach(function (kid, i) {
+            kid.style.transitionDelay = (i * 70) + "ms";
+            kid.classList.add("in");
+          });
+          groupIO.unobserve(e.target);
+        });
+      }, { threshold: 0.2 });
+      document.querySelectorAll("[data-stagger]").forEach(function (el) { groupIO.observe(el); });
     }
   };
 
@@ -54,7 +91,7 @@
       var pre = el.getAttribute("data-prefix") || "";
       var suf = el.getAttribute("data-suffix") || "";
       if (prefersReduced || isNaN(target) || target === 0) {
-        el.innerHTML = pre + (isNaN(target) ? "" : target) + suf;
+        el.textContent = pre + (isNaN(target) ? "" : target) + suf;
         return;
       }
       var start = null, dur = 1100;
@@ -62,7 +99,7 @@
         if (!start) start = ts;
         var p = Math.min((ts - start) / dur, 1);
         var eased = 1 - Math.pow(1 - p, 3);
-        el.innerHTML = pre + Math.round(target * eased) + suf;
+        el.textContent = pre + Math.round(target * eased) + suf;
         if (p < 1) requestAnimationFrame(step);
       }
       requestAnimationFrame(step);
@@ -83,8 +120,129 @@
     }
   };
 
+  /* ---------- Screenshots: hide any that are missing / fail to load ----------
+     Prevents broken-image icons in the work section. When a shot cannot load it
+     is removed; if a project's whole grid ends up empty, the grid is hidden. */
+  var Shots = {
+    init: function () {
+      var containers = document.querySelectorAll(".shots");
+      containers.forEach(function (container) {
+        var imgs = container.querySelectorAll("img");
+        imgs.forEach(function (img) {
+          function fail() {
+            img.setAttribute("data-failed", "");
+            img.style.display = "none";
+            if (!container.querySelector("img:not([data-failed])")) {
+              container.style.display = "none";
+            }
+          }
+          img.addEventListener("error", fail);
+          // Catch images that already failed before this script ran.
+          if (img.complete && img.naturalWidth === 0) fail();
+        });
+      });
+    }
+  };
+
+  /* ---------- Scroll progress hairline ---------- */
+  var Progress = {
+    init: function () {
+      var bar = document.querySelector(".scroll-progress");
+      if (!bar) return;
+      var ticking = false;
+      function update() {
+        var doc = document.documentElement;
+        var max = doc.scrollHeight - doc.clientHeight;
+        var p = max > 0 ? doc.scrollTop / max : 0;
+        bar.style.transform = "scaleX(" + p + ")";
+        ticking = false;
+      }
+      window.addEventListener("scroll", function () {
+        if (!ticking) { requestAnimationFrame(update); ticking = true; }
+      }, { passive: true });
+      window.addEventListener("resize", update, { passive: true });
+      update();
+    }
+  };
+
+  /* ---------- Section navigator: highlight the section in view ---------- */
+  var SectionNav = {
+    init: function () {
+      var nav = document.querySelector(".section-nav");
+      if (!nav || !("IntersectionObserver" in window)) return;
+
+      var links = {};
+      nav.querySelectorAll("a[data-spy]").forEach(function (a) {
+        links[a.getAttribute("data-spy")] = a;
+      });
+      var sections = Object.keys(links)
+        .map(function (id) { return document.getElementById(id); })
+        .filter(Boolean);
+
+      var current = null;
+      function setActive(id) {
+        if (current === id) return;
+        if (current && links[current]) {
+          links[current].classList.remove("active");
+          links[current].removeAttribute("aria-current");
+        }
+        current = id;
+        if (links[id]) {
+          links[id].classList.add("active");
+          links[id].setAttribute("aria-current", "true");
+        }
+      }
+
+      // Treat a thin band across the viewport centre as "current section".
+      var io = new IntersectionObserver(function (entries) {
+        var best = null;
+        entries.forEach(function (e) {
+          if (e.isIntersecting && (!best || e.intersectionRatio > best.intersectionRatio)) best = e;
+        });
+        if (best) setActive(best.target.id);
+      }, { rootMargin: "-45% 0px -45% 0px", threshold: [0, 0.01, 0.5, 1] });
+
+      sections.forEach(function (s) { io.observe(s); });
+    }
+  };
+
+  /* ---------- Scroll to top ---------- */
+  var ToTop = {
+    init: function () {
+      var btn = document.querySelector(".to-top");
+      if (!btn) return;
+      var ticking = false;
+      function update() {
+        var y = document.documentElement.scrollTop || document.body.scrollTop || 0;
+        btn.classList.toggle("show", y > window.innerHeight * 0.6);
+        ticking = false;
+      }
+      window.addEventListener("scroll", function () {
+        if (!ticking) { requestAnimationFrame(update); ticking = true; }
+      }, { passive: true });
+      btn.addEventListener("click", function () {
+        window.scrollTo({ top: 0, behavior: prefersReduced ? "auto" : "smooth" });
+      });
+      update();
+    }
+  };
+
+  /* ---------- Download CV → print (site has a print stylesheet) ---------- */
+  var Print = {
+    init: function () {
+      document.querySelectorAll("[data-print]").forEach(function (btn) {
+        btn.addEventListener("click", function () { window.print(); });
+      });
+    }
+  };
+
   /* ---------- Boot ---------- */
   Theme.init();
   Reveal.init();
   Counters.init();
+  Shots.init();
+  Progress.init();
+  SectionNav.init();
+  ToTop.init();
+  Print.init();
 })();
