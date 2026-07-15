@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<!-- Source for images/og-card.png. Render at 1200x630 with headless Chrome:
+     chrome --headless --window-size=1200,630 --screenshot=images/og-card.png <served-url>/og-card.html -->
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:opsz,wght@6..96,500;6..96,600&family=Hanken+Grotesk:wght@400&family=IBM+Plex+Mono:wght@400;500&display=swap"
+    rel="stylesheet" />
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    html, body { width: 1200px; height: 630px; }
+
+    body {
+      background: #F5F1E8;
+      color: #16181D;
+      font-family: "Hanken Grotesk", sans-serif;
+      display: grid;
+      grid-template-columns: 1.25fr .75fr;
+      align-items: center;
+      gap: 56px;
+      padding: 72px;
+      overflow: hidden;
+    }
+
+    .eyebrow {
+      font-family: "IBM Plex Mono", monospace;
+      font-size: 20px;
+      letter-spacing: .2em;
+      text-transform: uppercase;
+      color: #2A3FD6;
+      margin-bottom: 26px;
+    }
+
+    .name {
+      font-family: "Bodoni Moda", serif;
+      font-weight: 600;
+      font-size: 96px;
+      line-height: .98;
+      letter-spacing: -.01em;
+      margin-bottom: 30px;
+    }
+
+    .role {
+      font-family: "IBM Plex Mono", monospace;
+      font-size: 22px;
+      color: #565B66;
+      letter-spacing: .02em;
+    }
+
+    .url {
+      position: absolute;
+      left: 72px;
+      bottom: 60px;
+      font-family: "IBM Plex Mono", monospace;
+      font-size: 18px;
+      letter-spacing: .08em;
+      color: #2A3FD6;
+    }
+
+    .portrait {
+      width: 100%;
+      max-width: 300px;
+      justify-self: center;
+    }
+
+    .portrait img {
+      width: 100%;
+      height: auto;
+      display: block;
+      border-radius: 3px;
+      border: 3px solid #2A3FD6;
+      box-shadow: 0 14px 34px rgba(22, 24, 29, 0.22);
+      filter: url(#duotone);
+    }
+  </style>
+</head>
+
+<body>
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true">
+    <filter id="duotone" color-interpolation-filters="sRGB">
+      <feColorMatrix type="matrix" values="0.2126 0.7152 0.0722 0 0
+                                            0.2126 0.7152 0.0722 0 0
+                                            0.2126 0.7152 0.0722 0 0
+                                            0      0      0      1 0" />
+      <feComponentTransfer>
+        <feFuncR tableValues="0.07 0.96" />
+        <feFuncG tableValues="0.12 0.95" />
+        <feFuncB tableValues="0.24 0.92" />
+      </feComponentTransfer>
+    </filter>
+  </svg>
+
+  <div class="text">
+    <p class="eyebrow">iOS · Android · Desktop · Flutter</p>
+    <h1 class="name">Mohammed<br />Abdullah Khan</h1>
+    <p class="role">Flutter Developer · Available for work</p>
+  </div>
+
+  <div class="portrait">
+    <img src="assets/profile.jpg" alt="Mohammed Abdullah Khan" />
+  </div>
+
+  <span class="url">abdullahmurdana.github.io</span>
+</body>
+
+</html>

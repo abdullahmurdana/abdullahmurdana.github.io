@@ -165,10 +165,20 @@
     }
   };
 
+  /* ---------- Download CV → print (site has a print stylesheet) ---------- */
+  var Print = {
+    init: function () {
+      document.querySelectorAll("[data-print]").forEach(function (btn) {
+        btn.addEventListener("click", function () { window.print(); });
+      });
+    }
+  };
+
   /* ---------- Boot ---------- */
   Theme.init();
   Reveal.init();
   Counters.init();
   Shots.init();
   Progress.init();
+  Print.init();
 })();
