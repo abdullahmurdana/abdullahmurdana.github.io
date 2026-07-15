@@ -165,19 +165,25 @@
     }
   };
 
-  /* ---------- Section navigator: highlight the section in view ---------- */
+  /* ---------- Section navigator: highlight the section in view ----------
+     Active = the last section whose top has scrolled past a line just below
+     the sticky bar. A bottom-of-page case ensures the final (short) section
+     still activates, which a centre-band observer cannot guarantee. */
   var SectionNav = {
     init: function () {
       var nav = document.querySelector(".section-nav");
-      if (!nav || !("IntersectionObserver" in window)) return;
+      if (!nav) return;
 
-      var links = {};
+      var links = {}, order = [];
       nav.querySelectorAll("a[data-spy]").forEach(function (a) {
-        links[a.getAttribute("data-spy")] = a;
+        var id = a.getAttribute("data-spy");
+        links[id] = a;
+        order.push(id);
       });
-      var sections = Object.keys(links)
-        .map(function (id) { return document.getElementById(id); })
-        .filter(Boolean);
+      var sections = order
+        .map(function (id) { return { id: id, el: document.getElementById(id) }; })
+        .filter(function (s) { return s.el; });
+      if (!sections.length) return;
 
       var current = null;
       function setActive(id) {
@@ -193,16 +199,28 @@
         }
       }
 
-      // Treat a thin band across the viewport centre as "current section".
-      var io = new IntersectionObserver(function (entries) {
-        var best = null;
-        entries.forEach(function (e) {
-          if (e.isIntersecting && (!best || e.intersectionRatio > best.intersectionRatio)) best = e;
-        });
-        if (best) setActive(best.target.id);
-      }, { rootMargin: "-45% 0px -45% 0px", threshold: [0, 0.01, 0.5, 1] });
+      var ticking = false;
+      function update() {
+        ticking = false;
+        var line = 120; // activation line, just below the ~64px sticky bar
+        var doc = document.documentElement;
+        var atBottom = window.innerHeight + window.scrollY >= doc.scrollHeight - 2;
+        var activeId = sections[0].id;
+        if (atBottom) {
+          activeId = sections[sections.length - 1].id;
+        } else {
+          for (var i = 0; i < sections.length; i++) {
+            if (sections[i].el.getBoundingClientRect().top <= line) activeId = sections[i].id;
+          }
+        }
+        setActive(activeId);
+      }
 
-      sections.forEach(function (s) { io.observe(s); });
+      window.addEventListener("scroll", function () {
+        if (!ticking) { requestAnimationFrame(update); ticking = true; }
+      }, { passive: true });
+      window.addEventListener("resize", update, { passive: true });
+      update();
     }
   };
 
