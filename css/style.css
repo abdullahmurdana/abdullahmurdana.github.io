@@ -113,6 +113,116 @@ a {
   will-change: transform;
 }
 
+/* ---------- Right-side section navigator (scroll-spy) ---------- */
+.section-nav {
+  position: fixed;
+  right: max(22px, env(safe-area-inset-right));
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 45;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  align-items: flex-end;
+}
+
+.section-nav a {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 10px;
+  color: var(--sub);
+  touch-action: manipulation;
+}
+
+.sn-label {
+  font-family: "IBM Plex Mono", monospace;
+  font-size: .68rem;
+  text-transform: uppercase;
+  letter-spacing: .12em;
+  opacity: 0;
+  transform: translateX(6px);
+  transition: opacity .25s ease, transform .25s ease, color .25s ease;
+}
+
+.sn-tick {
+  width: 22px;
+  height: 2px;
+  border-radius: 2px;
+  background: currentColor;
+  opacity: .4;
+  transition: width .25s ease, opacity .25s ease, background-color .25s ease;
+}
+
+.section-nav a:hover .sn-label,
+.section-nav a:focus-visible .sn-label {
+  opacity: 1;
+  transform: none;
+  color: var(--ink);
+}
+
+.section-nav a:hover .sn-tick {
+  opacity: .85;
+}
+
+.section-nav a.active {
+  color: var(--accent);
+}
+
+.section-nav a.active .sn-label {
+  opacity: 1;
+  transform: none;
+  color: var(--accent);
+}
+
+.section-nav a.active .sn-tick {
+  width: 36px;
+  opacity: 1;
+  background: var(--accent);
+}
+
+/* ---------- Scroll to top ---------- */
+.to-top {
+  position: fixed;
+  right: max(20px, env(safe-area-inset-right));
+  bottom: max(20px, env(safe-area-inset-bottom));
+  z-index: 45;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  border: 1px solid var(--card-bd);
+  background: var(--paper-2);
+  color: var(--ink);
+  cursor: pointer;
+  display: grid;
+  place-items: center;
+  box-shadow: var(--shadow);
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(10px);
+  touch-action: manipulation;
+  transition: opacity .3s ease, transform .3s ease, visibility .3s, border-color .25s ease, color .25s ease, background-color .45s ease;
+}
+
+.to-top.show {
+  opacity: 1;
+  visibility: visible;
+  transform: none;
+}
+
+.to-top:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+  transform: translateY(-3px);
+}
+
+/* Section navigator needs clear gutter space beside the content */
+@media (max-width: 1279px) {
+  .section-nav {
+    display: none;
+  }
+}
+
 /* ---------- Theme toggle (lives in the top bar) ---------- */
 .theme-toggle {
   flex: none;
@@ -818,7 +928,9 @@ button:focus-visible {
   .theme-toggle,
   .hero-cta,
   .btn-wa,
-  .scroll-progress {
+  .scroll-progress,
+  .section-nav,
+  .to-top {
     display: none !important;
   }
 

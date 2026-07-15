@@ -165,6 +165,68 @@
     }
   };
 
+  /* ---------- Section navigator: highlight the section in view ---------- */
+  var SectionNav = {
+    init: function () {
+      var nav = document.querySelector(".section-nav");
+      if (!nav || !("IntersectionObserver" in window)) return;
+
+      var links = {};
+      nav.querySelectorAll("a[data-spy]").forEach(function (a) {
+        links[a.getAttribute("data-spy")] = a;
+      });
+      var sections = Object.keys(links)
+        .map(function (id) { return document.getElementById(id); })
+        .filter(Boolean);
+
+      var current = null;
+      function setActive(id) {
+        if (current === id) return;
+        if (current && links[current]) {
+          links[current].classList.remove("active");
+          links[current].removeAttribute("aria-current");
+        }
+        current = id;
+        if (links[id]) {
+          links[id].classList.add("active");
+          links[id].setAttribute("aria-current", "true");
+        }
+      }
+
+      // Treat a thin band across the viewport centre as "current section".
+      var io = new IntersectionObserver(function (entries) {
+        var best = null;
+        entries.forEach(function (e) {
+          if (e.isIntersecting && (!best || e.intersectionRatio > best.intersectionRatio)) best = e;
+        });
+        if (best) setActive(best.target.id);
+      }, { rootMargin: "-45% 0px -45% 0px", threshold: [0, 0.01, 0.5, 1] });
+
+      sections.forEach(function (s) { io.observe(s); });
+    }
+  };
+
+  /* ---------- Scroll to top ---------- */
+  var ToTop = {
+    init: function () {
+      var btn = document.querySelector(".to-top");
+      if (!btn) return;
+      var ticking = false;
+      function update() {
+        var y = document.documentElement.scrollTop || document.body.scrollTop || 0;
+        btn.classList.toggle("show", y > window.innerHeight * 0.6);
+        ticking = false;
+      }
+      window.addEventListener("scroll", function () {
+        if (!ticking) { requestAnimationFrame(update); ticking = true; }
+      }, { passive: true });
+      btn.addEventListener("click", function () {
+        window.scrollTo({ top: 0, behavior: prefersReduced ? "auto" : "smooth" });
+      });
+      update();
+    }
+  };
+
   /* ---------- Download CV → print (site has a print stylesheet) ---------- */
   var Print = {
     init: function () {
@@ -180,5 +242,7 @@
   Counters.init();
   Shots.init();
   Progress.init();
+  SectionNav.init();
+  ToTop.init();
   Print.init();
 })();
