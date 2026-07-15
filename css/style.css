@@ -254,10 +254,16 @@ a {
   color: #fff;
 }
 
-.wa-glyph {
+.wa-glyph,
+.btn-glyph {
   display: inline-flex;
   align-items: center;
   line-height: 0;
+}
+
+.btn[data-print] {
+  cursor: pointer;
+  font-family: "IBM Plex Mono", monospace;
 }
 
 /* ---------- Hero ---------- */
@@ -811,13 +817,22 @@ button:focus-visible {
 
   .theme-toggle,
   .hero-cta,
-  .btn-wa {
+  .btn-wa,
+  .scroll-progress {
     display: none !important;
   }
 
   body {
     background: #fff;
     color: #000;
+  }
+
+  /* Sticky/frosted bar becomes a plain document header when printed */
+  .topbar {
+    position: static;
+    background: #fff;
+    -webkit-backdrop-filter: none;
+    backdrop-filter: none;
   }
 
   .portrait img {
